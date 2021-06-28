@@ -1,4 +1,4 @@
-//const { request } = require("express");
+const { request } = require("express");
 const mysql= require("mysql");
 const jwt=require('jsonwebtoken');
 const bcrypt= require('bcryptjs');
@@ -11,6 +11,31 @@ const db= mysql.createConnection({
     password:process.env.DATABASE_PASSWORD,
     database:process.env.DATABASE
 });
+
+
+exports.register=async(req,res)=>{
+    try{
+        const{email,password}=req.body;
+        
+        if(!email||!password){
+            return res.status(400).render('login',{
+                message:'provide email & password'
+            })
+        }
+
+        db.query('SELECT * FROM users WHERE email=?',[email],async(error,results)=>{
+            console.log(results);
+            if(!results||!(await bcrypt.compare(password,results[0].password)));
+            res.status(401).render('login',{
+                message:'incorrect email or password'
+            })
+        })
+
+    }catch(error){
+        console.log(error);
+    }
+}
+
 
 exports.register=(req,res)=>{
     console.log(req.body);
@@ -30,7 +55,7 @@ exports.register=(req,res)=>{
         else if(password!==passwordConfirm){
             return res.render('register',{
                 message:'password does not match'
-            });
+            })
         }
         let hashedPassword=await bcrypt.hash(password,8);
         console.log(hashedPassword);
@@ -44,10 +69,10 @@ exports.register=(req,res)=>{
                 message:'registered'
             });
         }
-        }) 
+        }) ;
 
 
-    });
+    })
 
     //res.send("Welcome");
 }
