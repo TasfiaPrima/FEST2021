@@ -52,7 +52,6 @@ const postMO = (req, res) => {
         });
     }
   });
-  //   res.render('math-olympiad/register.ejs')
 };
 
 const getMOList = (req, res) => {
@@ -73,7 +72,6 @@ const getMOList = (req, res) => {
         participants: all_participant,
       });
     });
-  // res.render("math-olympiad/list.ejs");
 };
 const deleteMO = (req, res) => {
   const id = req.params.id;
@@ -91,7 +89,6 @@ const deleteMO = (req, res) => {
       req.flash("error", error);
       res.redirect("/MathOlympiad/list");
     });
-  // res.render('math-olympiad/register.ejs')
 };
 
 const paymentDoneMO = (req, res) => {
@@ -120,42 +117,6 @@ const paymentDoneMO = (req, res) => {
     });
 };
 
-const getEditMO = (req, res) => {
-  const id = req.params.id;
-  // const tshirt=req.params.tshirt
-  console.log("wd ", id, "  ");
-  let info = [];
-  MathOlympiad.findOne({ _id: id })
-    .then((data) => {
-      info = data;
-      // console.log("info ", info);
-      res.render("math-olympiad/editParticipant.ejs", {
-        error: req.flash("error"),
-        participant: info,
-      });
-    })
-    .catch((e) => {
-      console.log(e);
-      error = "Failed to fetch participants";
-      res.render("math-olympiad/editParticipant.ejs", {
-        error: req.flash("error", error),
-        participant: info,
-      });
-    });
-};
-
-const postEditMO = async (req, res) => {
-  const { name, contact, category, email, institution, tshirt } = req.body;
-
-  const data = await MathOlympiad.findOneAndUpdate(
-    { name: name, contact: contact },
-    { category, email, institution, tshirt }
-  );
-  if (data) {
-    console.log("findOneAndUpdate ", data);
-    res.redirect("/MathOlympiad/list");
-  }
-};
 const selectMO = (req, res) => {
   const id = req.params.id;
 
@@ -189,6 +150,4 @@ module.exports = {
   deleteMO,
   paymentDoneMO,
   selectMO,
-  getEditMO,
-  postEditMO,
 };
