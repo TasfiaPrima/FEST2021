@@ -1,6 +1,6 @@
-const ProgrammingContest = require('../models/ProgrammingContest.model');
+const ProgrammingContest = require('../models/ProgrammingContest.models');
 const getPC = (req, res) => {
-  res.render('programming-contest/pc-register.ejs', { error: req.flash('error') });
+  res.render('programming-contest/register.ejs', { error: req.flash('error') });
 };
 
 const postPC = (req, res) => {
@@ -87,14 +87,14 @@ const getPCList = (req, res) => {
   ProgrammingContest.find()
     .then((data) => {
       all_participant = data;
-      res.render('programming-contest/pc-list.ejs', {
+      res.render('programming-contest/list.ejs', {
         error: req.flash('error'),
         participants: all_participant,
       });
     })
     .catch(() => {
       error = 'Failed to fetch participants';
-      res.render('programming-contest/pc-list.ejs', {
+      res.render('programming-contest/list.ejs', {
         error: req.flash('error', error),
         participants: all_participant,
       });
@@ -153,7 +153,7 @@ const getEditPC = (req, res) => {
     .then((data) => {
       info = data;
 
-      res.render('programming-contest/pc-edit.ejs', {
+      res.render('programming-contest/edit.ejs', {
         error: req.flash('error'),
         participant: info,
       });
@@ -161,7 +161,7 @@ const getEditPC = (req, res) => {
     .catch((e) => {
       console.log(e);
       error = 'Failed to fetch participants';
-      res.render('programming-contest/pc-edit.ejs', {
+      res.render('programming-contest/edit.ejs', {
         error: req.flash('error', error),
         participant: info,
       });

@@ -95,5 +95,5 @@ const PCSchema = new mongoose.Schema({
   },
 });
 
-const ProgrammingContest = mongoose.model("programming-contest", PCSchema);
+const ProgrammingContest = mongoose.model("ProgrammingContest", PCSchema);
 module.exports = ProgrammingContest;
