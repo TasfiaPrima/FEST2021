@@ -1,4 +1,5 @@
 const ProgrammingContest = require('../models/ProgrammingContest.models');
+
 const getPC = (req, res) => {
   res.render('programming-contest/register.ejs', { error: req.flash('error') });
 };
@@ -24,7 +25,6 @@ const postPC = (req, res) => {
     TM2Email,
     TM2tshirt,
   } = req.body;
-  console.log(institute);
 
   const total = 800;
   const paid = 0;
@@ -146,8 +146,6 @@ const paymentDonePC = (req, res) => {
 
 const getEditPC = (req, res) => {
   const id = req.params.id;
-  // const tshirt=req.params.tshirt
-  console.log('wd ', id, '  ');
   let info = [];
   ProgrammingContest.findOne({ _id: id })
     .then((data) => {

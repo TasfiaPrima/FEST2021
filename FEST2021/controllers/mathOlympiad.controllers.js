@@ -6,7 +6,6 @@ const getMO = (req, res) => {
 
 const postMO = (req, res) => {
   const { name, category, contact, email, institution, tshirt } = req.body;
-  console.log(institution);
   let registrationFee = 0;
   if (category == "School") {
     registrationFee = 250;
@@ -119,8 +118,6 @@ const paymentDoneMO = (req, res) => {
 
 const getEditMO = (req, res) => {
   const id = req.params.id;
-  // const tshirt=req.params.tshirt
-  console.log("wd ", id, "  ");
   let info = [];
   MathOlympiad.findOne({ _id: id })
     .then((data) => {

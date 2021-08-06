@@ -1,148 +1,196 @@
 <div class="right_col" role="main">
-    <div class="">
-      <div class="clearfix"></div>
-      <div class="row">
-        <div class="col-md-12 col-sm-12">
-          <div class="x_panel">
-            <div class="x_title">
-              <h2>
-                Programming Contest<small>Edit Participant's Information</small>
-              </h2>
-              <ul class="nav navbar-right panel_toolbox">
-                <li>
-                  <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                </li>
-              </ul>
-  
-              <div class="clearfix"></div>
-            </div>
-            <div class="x_content">
-              <br />
-  
-              <% if (error.length>0) {%>
-              <div class="alert alert-danger"><%=error%></div>
-              <%}%> %>
-              <form
-                method="POST"
-                action="/Programming Contest/edit"
-                id="demo-form2"
-                data-parsley-validate
-                class="form-horizontal form-label-left"
-              >
-                <div class="item form-group">
-                  <label
-                    class="col-form-label col-md-3 col-sm-3 label-align"
-                    for="first-name"
-                    >Name <span class="required">*</span>
-                  </label>
-                  <div class="col-md-6 col-sm-6">
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      required="required"
-                      class="form-control"
-                      value="<%=participant.name%>"
-                    />
-                  </div>
-                </div>
-  
-                <div class="item form-group">
-                  <label
-                    class="col-form-label col-md-3 col-sm-3 label-align"
-                    for="first-name"
-                    >Contact No.<span class="required">*</span>
-                  </label>
-                  <div class="col-md-6 col-sm-6">
-                    <input
-                      type="text"
-                      id="contact"
-                      name="contact"
-                      required="required"
-                      class="form-control"
-                      value="<%=participant.contact%>"
-                    />
-                  </div>
-                </div>
-  
-                <div class="item form-group">
-                  <label
-                    class="col-form-label col-md-3 col-sm-3 label-align"
-                    for="first-name"
-                    >E-mail
-                  </label>
-                  <div class="col-md-6 col-sm-6">
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      class="form-control"
-                      value="<%=participant.email%>"
-                    />
-                  </div>
-                </div>
-  
-                <div class="item form-group">
-                  <label
-                    class="col-form-label col-md-3 col-sm-3 label-align"
-                    for="first-name"
-                    >Institution<span class="required">*</span>
-                  </label>
-                  <div class="col-md-6 col-sm-6">
-                    <input
-                      type="text"
-                      id="institution"
-                      name="institution"
-                      required="required"
-                      class="form-control"
-                      value="<%=participant.institution%>"
-                    />
-                  </div>
-                </div>
-  
-                <div class="item form-group">
-                  <label
-                    class="col-form-label col-md-3 col-sm-3 label-align"
-                    for="first-name"
-                    >Category<span class="required">*</span>
-                  </label>
-                  <div class="col-md-6 col-sm-6">
-                    <select class="form-control" id="category" name="category">
-                      <option value="<%=participant.category%>"><%=participant.category%></option>
-                      <option value="School">School</option>
-                      <option value="College">College</option>
-                      <option value="University">University</option>
-                    </select>
-                  </div>
-                </div>
-  
-                <div class="item form-group">
-                  <label
-                    class="col-form-label col-md-3 col-sm-3 label-align"
-                    for="first-name"
-                    >T-Shirt<span class="required">*</span>
-                  </label>
-                  <div class="col-md-6 col-sm-6">
-                    <select class="form-control" id="tshirt" name="tshirt">
-                      <option value="<%=participant.tshirt%>"><%=participant.tshirt%></option>
-                      <option value="M">Medium</option>
-                      <option value="L">Large</option>
-                      <option value="XL">Extra Large</option>
-                    </select>
-                  </div>
-                </div>
-  
-                <div class="ln_solid"></div>
-                <div class="item form-group">
-                  <div class="col-md-6 col-sm-6 offset-md-3">
-                    <button class="btn btn-primary" type="reset">Reset</button>
-                    <button type="submit" class="btn btn-success">Update</button>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
+  <div class="">
+    <div class="clearfix">
+      <h1>Programming Contest <small>/Edit Team Information</small></h1>
+      <br />
+      <% if (error.length>0) {%>
+        <div class="alert alert-danger">
+          <%=error%>
         </div>
-      </div>
+        <%}%> %>
+          <form method="POST" action="/ProgContest/pc-edit-participant" id="demo-form2" data-parsley-validate
+            class="form-horizontal form-label-left">
+            <div class="item form-group">
+
+              <div class="col-md-4 col-sm-4">
+                <input type="text" name="teamName" required="required" class="form-control" data-toggle="tooltip"
+                  title="Team Name" value="<%=participant.teamName%>" readonly />
+              </div>
+
+              <div class="col-md-4 col-sm-4">
+                <input type="text" id="institute" name="institute" required="required" class="form-control"
+                  data-toggle="tooltip" title="Institution Name" value="<%=participant.institute%>" readonly/>
+              </div>
+            </div>
+
+
+            <label for="first-name">
+              <h2>&nbsp; Information Regarding The Coach</h2>
+            </label>
+            <div class="item form-group">
+              <div class="col-md-4 col-sm-4">
+                <input type="text" id="coachName" name="coachName" required="required" class="form-control"
+                  data-toggle="tooltip" title="Coach Name" value="<%=participant.coachName%>"
+                  placeholder="Coach Name" />
+              </div>
+
+              <div class="col-md-4 col-sm-4">
+                <input type="text" id="coachContact" name="coachContact" required="required" class="form-control"
+                  data-toggle="tooltip" title="Coach Contact No." placeholder='Coach Contact No.'
+                  value='<%=participant.coachContact%>' />
+              </div>
+              <div class="col-md-4 col-sm-4">
+                <input type="email" id="coachEmail" name="coachEmail" required="required" class="form-control"
+                  data-toggle="tooltip" title="Coach Email" value="<%=participant.coachEmail%>"
+                  placeholder="Coach Email" />
+              </div>
+
+            </div>
+            <label for="first-name">&nbsp; T-Shirt Size of the Coach
+            </label>
+            <div class="item form-group">
+
+              <div class="col-md-4 col-sm-4">
+                <select class="form-control" id="coachTshirt" name="coachTshirt">
+                  <option value="<%=participant.coachTshirt%>">
+                    <%=participant.coachTshirt%>
+                  </option>
+                  <option value="M">Medium</option>
+                  <option value="L">Large</option>
+                  <option value="XL">Extra Large</option>
+                </select>
+              </div>
+            </div>
+            <br />
+
+            <label for="first-name">
+              <h2>&nbsp; Information Regarding Team Leader</h2>
+            </label>
+            <div class="item form-group">
+              <div class="col-md-4 col-sm-4">
+                <input type="text" id="TLName" name="TLName" required="required" class="form-control"
+                  data-toggle="tooltip" title="Team Leader Name" value="<%=participant.TLName%>"
+                  placeholder="Team Leader Name" />
+              </div>
+
+              <div class="col-md-4 col-sm-4">
+                <input type="text" id="TLContact" name="TLContact" required="required" class="form-control"
+                  data-toggle="tooltip" title="Team Leader Contact No." value='<%=participant.TLContact%>'
+                  placeholder='Team Leader Contact No.' />
+              </div>
+              <div class="col-md-4 col-sm-4">
+                <input type="email" id="TLEmail" name="TLEmail" required="required" class="form-control"
+                  data-toggle="tooltip" title="Team Leader Email" value="<%=participant.TLEmail%>"
+                  placeholder="Team Leader Email" />
+              </div>
+
+            </div>
+            <label for="first-name">&nbsp; T-Shirt Size of Team Leader
+            </label>
+            <div class="item form-group">
+
+              <div class="col-md-4 col-sm-4">
+                <select class="form-control" id="TLtshirt" name="TLtshirt">
+                  <option value="<%=participant.TLtshirt%>">
+                    <%=participant.TLtshirt%>
+                  </option>
+                  <option value="M">Medium</option>
+                  <option value="L">Large</option>
+                  <option value="XL">Extra Large</option>
+                </select>
+              </div>
+            </div>
+
+            <br />
+            <label for="first-name">
+              <h2>&nbsp; Information Regarding Team Member 1</h2>
+            </label>
+            <div class="item form-group">
+              <div class="col-md-4 col-sm-4">
+                <input type="text" id="TM1Name" name="TM1Name" required="required" class="form-control"
+                  data-toggle="tooltip" title="Team Member 1 Name" value="<%=participant.TM1Name%>"
+                  placeholder="Team Member 1 Name" />
+              </div>
+
+              <div class="col-md-4 col-sm-4">
+                <input type="text" id="TM1Contact" name="TM1Contact" required="required" class="form-control"
+                  data-toggle="tooltip" title="Team Member 1 Contact No." value="<%=participant.TM1Contact%>"
+                  placeholder='Team Member 1 Contact No.' />
+              </div>
+              <div class="col-md-4 col-sm-4">
+                <input type="email" id="TM1Email" name="TM1Email" required="required" class="form-control"
+                  data-toggle="tooltip" title="Team Member 1 Email" value="<%=participant.TM1Email%>"
+                  placeholder="Team Member 1 Email" />
+              </div>
+
+            </div>
+            <label for="first-name">&nbsp; T-Shirt Size of Team Member 1
+            </label>
+            <div class="item form-group">
+
+              <div class="col-md-4 col-sm-4">
+                <select class="form-control" id="TM1tshirt" name="TM1tshirt">
+                  <option value="<%=participant.TM1tshirt%>">
+                    <%=participant.TM1tshirt%>
+                  </option>
+                  <option value="M">Medium</option>
+                  <option value="L">Large</option>
+                  <option value="XL">Extra Large</option>
+                </select>
+              </div>
+            </div>
+
+            <br />
+
+            <label for="first-name">
+              <h2>&nbsp; Information Regarding Team Member 2</h2>
+            </label>
+            <div class="item form-group">
+              <div class="col-md-4 col-sm-4">
+                <input type="text" id="TM2Name" name="TM2Name" required="required" class="form-control"
+                  data-toggle="tooltip" title="Team Member 2 Name" value="<%=participant.TM2Name%>"
+                  placeholder="Team Member 2 Name" />
+              </div>
+
+              <div class="col-md-4 col-sm-4">
+                <input type="text" id="TM2Contact" name="TM2Contact" required="required" class="form-control"
+                  data-toggle="tooltip" title="Team Member 2 Contact No." value="<%=participant.TM2Contact%>"
+                  placeholder='Team Member 2 Contact No.' />
+              </div>
+              <div class="col-md-4 col-sm-4">
+                <input type="email" id="TM2Email" name="TM2Email" required="required" class="form-control"
+                  data-toggle="tooltip" title="Team Member 2 Email" value="<%=participant.TM2Email%>"
+                  placeholder="Team Member 2 Email" />
+              </div>
+
+            </div>
+            <label for="first-name">&nbsp; T-Shirt Size of Team Member 2
+            </label>
+            <div class="item form-group">
+
+              <div class="col-md-4 col-sm-4">
+                <select class="form-control" id="TM2tshirt" name="TM2tshirt">
+                  <option value="<%=participant.TM2tshirt%>">
+                    <%=participant.TM2tshirt%>
+                  </option>
+                  <option value="M">Medium</option>
+                  <option value="L">Large</option>
+                  <option value="XL">Extra Large</option>
+                </select>
+              </div>
+            </div>
+
+
+            <div class="ln_solid"></div>
+            <div class="item form-group">
+              <div class="col-md-6 col-sm-6 offset-md-3">
+                <button class="btn btn-primary" type="reset">Reset</button>
+                <button type="submit" class="btn btn-success">Submit</button>
+              </div>
+            </div>
+          </form>
+
     </div>
   </div>
+</div>
+</div>
