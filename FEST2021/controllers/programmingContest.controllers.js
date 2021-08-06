@@ -1,30 +1,14 @@
 const ProgrammingContest = require('../models/ProgrammingContest.models');
 
+
 const getPC = (req, res) => {
   res.render('programming-contest/register.ejs', { error: req.flash('error') });
 };
 
+
 const postPC = (req, res) => {
-  const {
-    teamName,
-    institute,
-    coachName,
-    coachContact,
-    coachEmail,
-    coachTshirt,
-    TLName,
-    TLContact,
-    TLEmail,
-    TLtshirt,
-    TM1Name,
-    TM1Contact,
-    TM1Email,
-    TM1tshirt,
-    TM2Name,
-    TM2Contact,
-    TM2Email,
-    TM2tshirt,
-  } = req.body;
+  const {teamName,institute,coachName,coachContact,coachEmail,coachTshirt,TLName,TLContact,
+    TLEmail,TLtshirt,TM1Name,TM1Contact,TM1Email,TM1tshirt,TM2Name,TM2Contact,TM2Email,TM2tshirt} = req.body;
 
   const total = 800;
   const paid = 0;
@@ -39,28 +23,8 @@ const postPC = (req, res) => {
         res.redirect('/ProgrammingContest/register');
       } else {
         const participant = new ProgrammingContest({
-          teamName,
-          institute,
-          coachName,
-          coachContact,
-          coachEmail,
-          coachTshirt,
-          TLName,
-          TLContact,
-          TLEmail,
-          TLtshirt,
-          TM1Name,
-          TM1Contact,
-          TM1Email,
-          TM1tshirt,
-          TM2Name,
-          TM2Contact,
-          TM2Email,
-          TM2tshirt,
-          total,
-          paid,
-          selected,
-        });
+          teamName,institute,coachName,coachContact,coachEmail,coachTshirt,TLName,TLContact,TLEmail,TLtshirt,
+          TM1Name,TM1Contact,TM1Email,TM1tshirt,TM2Name,TM2Contact,TM2Email,TM2tshirt,total,paid,selected});
         participant
           .save()
           .then(() => {
@@ -81,6 +45,8 @@ const postPC = (req, res) => {
   );
 };
 
+
+
 const getPCList = (req, res) => {
   let all_participant = [];
   let error = '';
@@ -100,6 +66,9 @@ const getPCList = (req, res) => {
       });
     });
 };
+
+
+
 const deletePC = (req, res) => {
   const id = req.params.id;
   console.log('id ', id);
@@ -117,6 +86,7 @@ const deletePC = (req, res) => {
       res.redirect('/ProgrammingContest/list');
     });
 };
+
 
 const paymentDonePC = (req, res) => {
   const id = req.params.id;
@@ -144,6 +114,7 @@ const paymentDonePC = (req, res) => {
     });
 };
 
+
 const getEditPC = (req, res) => {
   const id = req.params.id;
   let info = [];
@@ -166,68 +137,23 @@ const getEditPC = (req, res) => {
     });
 };
 
+
 const postEditPC = async (req, res) => {
   const {
-    teamName,
-    institute,
-    coachName,
-    coachContact,
-    coachEmail,
-    coachTshirt,
-    TLName,
-    TLContact,
-    TLEmail,
-    TLtshirt,
-    TM1Name,
-    TM1Contact,
-    TM1Email,
-    TM1tshirt,
-    TM2Name,
-    TM2Contact,
-    TM2Email,
-    TM2tshirt,
+    teamName,institute,coachName,coachContact,coachEmail,coachTshirt,TLName,TLContact,
+    TLEmail,TLtshirt,TM1Name,TM1Contact,TM1Email,TM1tshirt,TM2Name,TM2Contact,TM2Email,TM2tshirt
   } = req.body;
 
   console.log(
-    teamName,
-    institute,
-    coachName,
-    coachContact,
-    coachEmail,
-    coachTshirt,
-    TLName,
-    TLContact,
-    TLEmail,
-    TLtshirt,
-    TM1Name,
-    TM1Contact,
-    TM1Email,
-    TM1tshirt,
-    TM2Name,
-    TM2Contact,
-    TM2Email,
-    TM2tshirt
+    teamName,institute,coachName,coachContact,coachEmail,coachTshirt,TLName,TLContact,
+    TLEmail,TLtshirt,TM1Name,TM1Contact,TM1Email,TM1tshirt,TM2Name,TM2Contact,TM2Email,TM2tshirt
   );
 
   const data = await ProgrammingContest.findOneAndUpdate(
     { teamName: teamName, institute: institute },
     {
-      coachName,
-      coachContact,
-      coachEmail,
-      coachTshirt,
-      TLName,
-      TLContact,
-      TLEmail,
-      TLtshirt,
-      TM1Name,
-      TM1Contact,
-      TM1Email,
-      TM1tshirt,
-      TM2Name,
-      TM2Contact,
-      TM2Email,
-      TM2tshirt,
+      teamName,institute,coachName,coachContact,coachEmail,coachTshirt,TLName,TLContact,
+    TLEmail,TLtshirt,TM1Name,TM1Contact,TM1Email,TM1tshirt,TM2Name,TM2Contact,TM2Email,TM2tshirt
     }
   );
   if (data) {
@@ -235,6 +161,9 @@ const postEditPC = async (req, res) => {
     res.redirect('/ProgrammingContest/list');
   }
 };
+
+
+
 const selectPC = (req, res) => {
   const id = req.params.id;
 
