@@ -1,5 +1,6 @@
 const ProgrammingContest = require('../models/ProgrammingContest.models');
-
+const { v4: uuidv4 } = require('uuid');
+const mail = require("../utils/mail");
 
 const getPC = (req, res) => {
   res.render('programming-contest/register.ejs', { error: req.flash('error') });
@@ -22,16 +23,20 @@ const postPC = (req, res) => {
         req.flash('error', error);
         res.redirect('/ProgrammingContest/register');
       } else {
+        const key=uuidv4()
         const participant = new ProgrammingContest({
           teamName,institute,coachName,coachContact,coachEmail,coachTshirt,TLName,TLContact,TLEmail,TLtshirt,
-          TM1Name,TM1Contact,TM1Email,TM1tshirt,TM2Name,TM2Contact,TM2Email,TM2tshirt,total,paid,selected});
+          TM1Name,TM1Contact,TM1Email,TM1tshirt,TM2Name,TM2Contact,TM2Email,TM2tshirt,total,paid,selected,key});
         participant
           .save()
           .then(() => {
             error =
               'Team for Programming Contest has been registered successfully!!';
-            console.log('save ', error);
-            req.flash('error', error);
+              mail(coachEmail,"Programming Contest", key,coachName)
+              mail(TLEmail,"Programming Contest", key,TLName)
+              mail(TM1Email,"Programming Contest", key,TM1Name)
+              mail(TM2Email,"Programming Contest", key,TM2Name)
+              req.flash('error', error);
             res.redirect('/ProgrammingContest/register');
           })
           .catch(() => {
