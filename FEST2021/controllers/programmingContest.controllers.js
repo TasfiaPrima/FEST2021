@@ -1,6 +1,6 @@
 const ProgrammingContest = require('../models/ProgrammingContest.models');
 const { v4: uuidv4 } = require('uuid');
-const mail = require("../utils/mail");
+const mail = require("./mail");
 
 const getPC = (req, res) => {
   res.render('programming-contest/register.ejs', { error: req.flash('error') });

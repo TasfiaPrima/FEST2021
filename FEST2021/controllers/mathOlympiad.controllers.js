@@ -1,6 +1,6 @@
 const MathOlympiad = require("../models/MathOlympiad.models");
 const { v4: uuidv4 } = require('uuid');
-const mail = require("../utils/mail");
+const mail = require("./mail");
 
 const getMO = (req, res) => {
   res.render("math-olympiad/register.ejs", { error: req.flash("error") });
@@ -24,7 +24,6 @@ const postMO = (req, res) => {
   MathOlympiad.findOne({ name: name, contact: contact }).then((participant) => {
     if (participant) {
       error = "Participant with same name and contact exists";
-
       req.flash("error", error);
       res.redirect("/MathOlympiad/register");
     } else {
